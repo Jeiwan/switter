@@ -13,3 +13,14 @@
  *= require_tree .
  *= require_self
  */
+.navbar {
+	border-radius: 0 0 4px 4px !important;
+}
+.navbar-brand {
+	text-transform: uppercase;
+	color: #eee !important;
+	transition: all 0.3s;
+}
+.navbar-brand:hover {
+	text-shadow: 0 0 5px #fff;
+}

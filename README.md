@@ -6,20 +6,22 @@ A twitter-like application on Ruby on Rails made for the purpose of learning RoR
 
 ## Status
 
-Development is not started yet.
+In progress.
 
 ## Roadmap
 
+1. ~~Indexpage controller~~
+	1. ~~Index page with 'Log in' and 'Sign up' buttons~~
 1. User model:
-	1. Generate model (nickname:string, fullname:string, password_digest:string)
-	2. Customize layout	
-	3. Create controllers: new, create, index, show. Views:
-		1. New - registration form
-		2. Index - welcome and login page
+	1. ~~Generate model (nickname:string, fullname:string, password_digest:string)~~
+	2. ~~Customize layout~~
+	3. Create controllers: ~~new~~, ~~create~~, index, show. Views:
+		1. ~~New - registration form~~
+		2. Index - list users
 		3. Show - show user's profile (avatar, fullname, tweets, followers, followed users, follow/unfollow button)
-	4. Validate model
+	4. ~~Validate model~~
 2. Sessions:
-	1. Generate sessions controller
+	1. ~~Generate sessions controller~~
 	2. Make log-in and log-out pages
 3. Micropost model:
 	1. Generate model (post:string)
