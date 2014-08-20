@@ -14,6 +14,17 @@ html lang="en"
       .container-fluid
         .navbar-header
           = link_to 'Switter', '/', class: 'navbar-brand'
+        - if signed_in?
+          ul.nav.navbar-nav.navbar-right
+            li.dropdown
+              = link_to '#', class: 'dropdown-toggle', data: { toggle: 'dropdown' } do
+                = current_user.nickname
+                = content_tag :span, nil, class: 'caret'
+              = content_tag :ul, class: 'dropdown-menu', role: 'menu' do
+                = content_tag :li do
+                  = link_to 'Settings', ''
+                  = link_to 'Log out', logout_path, method: :delete
     section.container
       = render "layouts/flash"
       = yield
+      = debug(params) if Rails.env.development?

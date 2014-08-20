@@ -1,4 +1,4 @@
-- if @user.errors.any?
+- if @user && @user.errors.any?
   = content_tag :p, "There are #{@user.errors.count} #{ pluralize @user.errors.count 'error'}"
   = content_tag :ul do
     - @user.erors.full_messages.each do |message|

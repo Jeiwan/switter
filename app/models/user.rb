@@ -1,11 +1,13 @@
 class User < ActiveRecord::Base
 
-	attr_accessor :password, :password_confirmation
+	has_secure_password
+
+	#attr_accessor :password, :password_confirmation
 
 	before_save :encrypt_password
 
 	validates_presence_of :nickname, :email, :fullname, :password, :password_confirmation
-	validates_uniqueness_of :nickname, :email, :fullname
+	validates_uniqueness_of :nickname, :email
 	validates :nickname, length: { in: 5..32 }
 	validates :fullname, length: { in: 5..64 }
 	validates :password, confirmation: true, length: { in: 8..128 }

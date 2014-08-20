@@ -18,11 +18,11 @@ In progress.
 	3. Create controllers: ~~new~~, ~~create~~, index, show. Views:
 		1. ~~New - registration form~~
 		2. Index - list users
-		3. Show - show user's profile (avatar, fullname, tweets, followers, followed users, follow/unfollow button)
+		3. Show - show user's profile (~~avatar~~, ~~nickname~~, tweets, followers, followed users, follow/unfollow button)
 	4. ~~Validate model~~
-2. Sessions:
+2. ~~Sessions:~~
 	1. ~~Generate sessions controller~~
-	2. Make log-in and log-out pages
+	2. ~~Make log-in and log-out pages~~
 3. Micropost model:
 	1. Generate model (post:string)
 	2. Create controllers: create. Views:

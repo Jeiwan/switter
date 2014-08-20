@@ -1,0 +1,8 @@
+= page_title @user.nickname
+
+.row
+  .col-md-4
+    h1
+      = gravatar_for @user.email
+      = @user.nickname
+  .col-md-1

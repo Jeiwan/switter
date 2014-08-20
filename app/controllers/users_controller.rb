@@ -17,6 +17,17 @@ class UsersController < ApplicationController
 		end
 	end
 
+	def show
+		@user = User.find_by_nickname(params[:user_name])
+
+		if @user
+			render "show"
+		else
+			flash[:danger] = 'User is not found!'
+			redirect_to root_path
+		end
+	end
+
 
 	private
 		def params_user
