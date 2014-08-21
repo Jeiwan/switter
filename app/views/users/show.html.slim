@@ -5,4 +5,13 @@
     h1
       = gravatar_for @user.email
       = @user.nickname
-  .col-md-1
+  .col-md-8
+    = form_tag new_micropost_path, method: :post do
+      .form-group.row
+        .col-md-8
+          = text_area_tag 'micropost[content]', nil, class: 'form-control', rows: '4'
+      .form-group.row
+        .col-md-8
+          = submit_tag 'Post', class: 'btn btn-primary'
+    ul.b-microposts
+      = render @microposts

@@ -2,6 +2,8 @@ class User < ActiveRecord::Base
 
 	has_secure_password
 
+	has_many :microposts
+
 	#attr_accessor :password, :password_confirmation
 
 	before_save :encrypt_password

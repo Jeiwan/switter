@@ -6,4 +6,8 @@ FactoryGirl.define do
 		password "asdzxcasd"
 		password_confirmation "asdzxcasd"
 	end
+	factory :micropost do
+		content "Hello, world!"
+		user
+	end
 end

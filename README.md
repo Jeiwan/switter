@@ -23,12 +23,12 @@ In progress.
 2. ~~Sessions:~~
 	1. ~~Generate sessions controller~~
 	2. ~~Make log-in and log-out pages~~
-3. Micropost model:
-	1. Generate model (post:string)
-	2. Create controllers: create. Views:
-		1. New - on user's profile page for current user
-		2. Index - on user's profile page for current user
-	3. Validate model
+3. ~~Micropost model:~~
+	1. ~~Generate model (content:string)~~
+	2. ~~Create controllers: create. Views:~~
+		1. ~~New - on user's profile page for current user~~
+		2. ~~Index - on user's profile page for current user~~
+	3. ~~Validate model~~
 4. Follow/unfollow mechanism:
 	1. Generate model relashionships (follower_id:integer, followed_id:integer)
 	2. Make relations in User model between followers and followed users

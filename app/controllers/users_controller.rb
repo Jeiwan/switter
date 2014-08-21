@@ -21,6 +21,7 @@ class UsersController < ApplicationController
 		@user = User.find_by_nickname(params[:user_name])
 
 		if @user
+			@microposts = @user.microposts
 			render "show"
 		else
 			flash[:danger] = 'User is not found!'

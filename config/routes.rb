@@ -10,5 +10,9 @@ Rails.application.routes.draw do
 	get '/signup' => 'users#new', as: 'signup'
 	get '/:user_name' => 'users#show', as: 'user'
 
+	# Microposts
+	post '/newmicropost' => 'microposts#create', as: 'new_micropost'
+	delete '/delmicropost/:id' => 'microposts#destroy', as: 'del_micropost'
+
 	root 'indexpage#index'
 end
