@@ -1,0 +1,23 @@
+= page_title 'Settings'
+
+.row
+  .col-md-offset-3.col-md-6
+    .panel.panel-default
+      .panel-body
+        = render "errors"
+        = form_for @user, url: settings_path, method: :put do |f|
+          .form-group.row
+            = f.label :fullname, class: 'col-md-2'
+            .col-md-10
+              = f.text_field :fullname, class: 'form-control'
+          .form-group.row
+            = label_tag 'Password', nil, class: 'col-md-2', for: 'user_password'
+            .col-md-10
+              = password_field_tag 'user[password]', nil, class: 'form-control'
+          .form-group.row
+            = label_tag 'Password confirmation', nil, class: 'col-md-2', for: 'user_password_confirmation'
+            .col-md-10
+              = password_field_tag 'user[password_confirmation]', nil, class: 'form-control'
+          .form-group.row
+            .col-md-offset-2.col-md-10
+              = f.submit 'Edit', class: 'btn btn-success'

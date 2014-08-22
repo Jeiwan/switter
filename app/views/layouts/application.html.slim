@@ -7,6 +7,7 @@ html lang="en"
        |Switter
        = yield :page_title
     = stylesheet_link_tag     'application', media: 'all'
+    = stylesheet_link_tag     'http://fonts.googleapis.com/css?family=Open+Sans:300&subset=latin,cyrillic'
     = javascript_include_tag  'application'
     = csrf_meta_tags
   body
@@ -22,7 +23,7 @@ html lang="en"
                 = content_tag :span, nil, class: 'caret'
               = content_tag :ul, class: 'dropdown-menu', role: 'menu' do
                 = content_tag :li do
-                  = link_to 'Settings', ''
+                  = link_to 'Settings', settings_path
                   = link_to 'Log out', logout_path, method: :delete
     section.container
       = render "layouts/flash"

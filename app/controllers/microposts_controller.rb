@@ -6,7 +6,7 @@ class MicropostsController < ApplicationController
 
 		if @micropost.save
 			current_user.microposts << @micropost
-			flash[:success] = "Micropost craeted!"
+			flash[:success] = "Micropost created!"
 		else
 			flash[:danger] = "Error: post length shouldn't exceed 140 chars!"
 		end

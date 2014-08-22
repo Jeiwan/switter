@@ -2,9 +2,14 @@
 
 .row
   .col-md-4
-    h1
-      = gravatar_for @user.email
-      = @user.nickname
+    .avatar-n-name
+      h2
+        = gravatar_for @user.email
+        .b-username
+          = @user.nickname
+          br
+          small
+            = @user.fullname
   .col-md-8
     = form_tag new_micropost_path, method: :post do
       .form-group.row

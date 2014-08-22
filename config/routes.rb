@@ -8,6 +8,8 @@ Rails.application.routes.draw do
 	# Users
 	resources :users, only: [:index, :create]
 	get '/signup' => 'users#new', as: 'signup'
+	get '/settings' => 'users#edit', as: 'settings'
+	put '/settings' => 'users#update'
 	get '/:user_name' => 'users#show', as: 'user'
 
 	# Microposts
