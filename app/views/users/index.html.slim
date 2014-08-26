@@ -1,0 +1,8 @@
+= page_title 'Users'
+h1 All users
+.row
+  .col-md-10.col-md-offset-1
+    = will_paginate renderer: BootstrapPagination::Rails
+    ul.b-users
+      = render @users
+    = will_paginate renderer: BootstrapPagination::Rails

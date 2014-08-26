@@ -17,9 +17,9 @@ In progress.
 	2. ~~Customize layout~~
 	3. Create controllers: ~~new~~, ~~create~~, index, show. Views:
 		1. ~~New - registration form~~
-		2. Index - list users with pagination
-		3. Show - show user's profile (~~avatar~~, ~~nickname~~, ~~tweets~~, followers, followed users, follow/unfollow button)
-		4. Edit – profile settings page (allows to change fullname)
+		2. ~~Index - list users with pagination~~
+		3. Show - show user's profile (~~avatar~~, ~~nickname~~, ~~tweets~~, followers, followed users, ~~follow~~/unfollow button)
+		4. ~~Edit – profile settings page (allows to change fullname)~~
 	4. ~~Validate model~~
 2. ~~Sessions:~~
 	1. ~~Generate sessions controller~~
@@ -31,11 +31,11 @@ In progress.
 		2. ~~Index - on user's profile page for current user~~ with pagination
 	3. ~~Validate model~~
 4. Follow/unfollow mechanism:
-	1. Generate model relashionships (follower_id:integer, followed_id:integer)
+	1. ~~Generate model relashionships (follower_id:integer, followed_id:integer)~~
 	2. Make relations in User model between followers and followed users
 	3. Add follow/unfollow button and make it work
-5. Feed
-	1. Pour together user's and its followed users microposts in a sole feed on user's profile page
+5. ~~Feed~~
+	1. ~~Pour together user's and its followed users microposts in a sole feed on user's profile page~~
 6. PROFIT
 
 ## Last subheader

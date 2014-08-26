@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 	get '/settings' => 'users#edit', as: 'settings'
 	put '/settings' => 'users#update'
 	get '/:user_name' => 'users#show', as: 'user'
+	get '/follow/:user_name' => 'users#follow', as: 'follow'
 
 	# Microposts
 	post '/newmicropost' => 'microposts#create', as: 'new_micropost'

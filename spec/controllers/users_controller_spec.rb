@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe UsersController, :type => :controller do
 	let(:user) { FactoryGirl.create(:user) }
+	let(:user_to_follow) { FactoryGirl.create(:user) }
 
 	describe "GET /signup" do
 		it "renders registration page" do
@@ -46,6 +47,15 @@ RSpec.describe UsersController, :type => :controller do
 				put :update, user: { email: user.email, fullname: user.fullname.reverse, passwod: user.password, password_confirmation: user.password_confirmation }
 				expect(response).to redirect_to user_path(user.nickname)
 			end
+		end
+	end
+	describe "GET /follow/:user_name" do
+		before do
+			allow(controller).to receive(:current_user) { user }
+		end
+		it "redirects to user's page" do
+			get :follow, { user_name: user_to_follow.nickname }
+			expect(response).to redirect_to user_path(user_to_follow.nickname)
 		end
 	end
 end

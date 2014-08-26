@@ -1,0 +1,6 @@
+li.b-user
+  = gravatar_for user
+  strong.b-user__nickname
+    = link_to user.nickname, user_path(user.nickname)
+  small.b-user__fullname
+    = user.fullname

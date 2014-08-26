@@ -19,8 +19,8 @@ group :test do
 	gem 'launchy'
 end
 
-#gem 'will_paginate'
-#gem 'will_paginate-bootstrap'
+gem 'will_paginate'
+gem 'will_paginate-bootstrap'
 
 gem 'sass-rails'
 gem 'uglifier'

@@ -4,19 +4,24 @@
   .col-md-4
     .avatar-n-name
       h2
-        = gravatar_for @user.email
+        = gravatar_for @user
         .b-username
           = @user.nickname
           br
           small
             = @user.fullname
+      - if current_user.follows? @user
+        = link_to 'Unfollow', ''
+      - else
+        = link_to 'Follow', follow_path(@user.nickname)
   .col-md-8
-    = form_tag new_micropost_path, method: :post do
-      .form-group.row
-        .col-md-8
-          = text_area_tag 'micropost[content]', nil, class: 'form-control', rows: '4'
-      .form-group.row
-        .col-md-8
-          = submit_tag 'Post', class: 'btn btn-primary'
+    - if signed_in? && @user == current_user
+      = form_tag new_micropost_path, method: :post do
+        .form-group.row
+          .col-md-8
+            = text_area_tag 'micropost[content]', nil, class: 'form-control', rows: '4'
+        .form-group.row
+          .col-md-8
+            = submit_tag 'Post', class: 'btn btn-primary'
     ul.b-microposts
       = render @microposts

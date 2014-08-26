@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
-	#before_action :must_be_signed_in, only: [:edit, :update]
+	before_action :must_be_signed_in, only: [:edit, :update]
 
 	def index
+		@users = User.all.paginate(page: params[:page],per_page: 20)
 	end
 
 	def new
@@ -23,10 +24,14 @@ class UsersController < ApplicationController
 		@user = User.find_by_nickname(params[:user_name])
 
 		if @user
-			@microposts = @user.microposts.order('created_at DESC')
+			if @user == current_user
+				@microposts = @user.feed(current_user).order('created_at DESC')
+			else
+				@microposts = @user.microposts.order('created_at DESC')
+			end
 			render "show"
 		else
-			flash[:danger] = 'User is not found!'
+			flash[:danger] = "User is not found!"
 			redirect_to root_path
 		end
 	end
@@ -44,6 +49,10 @@ class UsersController < ApplicationController
 		end
 	end
 
+	def follow
+		current_user.follow(User.find_by(nickname: params[:user_name]))
+		redirect_to user_path(params[:user_name])
+	end
 
 	private
 		def params_user
