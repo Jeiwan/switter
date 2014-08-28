@@ -1,3 +1,6 @@
+#require 'date_helper'
+include ActionView::Helpers::DateHelper
+
 class MicropostsController < ApplicationController
 	before_action :must_be_logged_in, only: [ :create, :destroy ]
 
@@ -29,7 +32,17 @@ class MicropostsController < ApplicationController
 		if @user
 			@microposts = signed_in? && @user == current_user ? @user.feed(limit: false) : @user.microposts
 			@microposts = @microposts[params[:cursor].to_i, 20]
-			render json: @microposts.to_json(include: {user: {only: [:nickname, :email]}})
+			@microposts = @microposts.to_a.map do |m|
+				mm = m.as_json
+				mm[:created] = time_ago_in_words(m.created_at)
+				mm[:user] = {}
+				user = User.find(m.user.id)
+				mm[:user][:nickname] = user.nickname
+				mm[:user][:email] = user.email
+				mm
+			end
+			#@microposts = @microposts.map { |m| m[:created] = time_ago_in_words(m.created_at) }
+			render json: @microposts
 		else
 			render json: { error: "User is not found!" }
 		end

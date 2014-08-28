@@ -3,7 +3,8 @@ li.b-micropost
   span
     |Posted by 
     = link_to micropost.user.nickname, user_path(micropost.user.nickname)
-    |&nbspon 
-    = micropost.created_at
+    |&nbsp;
+    = time_ago_in_words micropost.created_at
+    |&nbsp;ago
   p
     = micropost.content

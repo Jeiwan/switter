@@ -17,7 +17,7 @@ $ ->
 				$.each(data, (d) ->
 					li = $("<li class='b-micropost'></li>")
 					#img = $("<img src='http://gravatar.com/avatar/#{md5}?size=50'>")
-					span = $("<span>Posted by <a href='#'>" + data[d].user.nickname + "</a> on " + data[d].created_at + "</span>")
+					span = $("<span>Posted by <a href='#'>" + data[d].user.nickname + "</a> " + data[d].created + " ago</span>")
 					p = $("<p>" + data[d].content + "</p>")
 					$feed.append(li.append(span).append(p))
 				)
