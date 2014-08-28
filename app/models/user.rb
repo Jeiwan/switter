@@ -7,6 +7,9 @@ class User < ActiveRecord::Base
 	has_many :relationships, foreign_key: "follower_id", dependent: :destroy
 	has_many :followed_users, through: :relationships, source: :followed
 
+	has_many :reverse_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
+	has_many :followers, through: :reverse_relationships
+
 	#attr_accessor :password, :password_confirmation
 
 	before_save :encrypt_password
@@ -25,14 +28,16 @@ class User < ActiveRecord::Base
 		relationships.find_by(followed_id: user.id) if user
 	end
 
-	def feed user
-		Micropost.feed user
+	def unfollow user_to_unfollow
+		relationships.find_by(followed_id: user_to_unfollow.id).destroy
 	end
 
-	#def unfollow user_to_follow
-		#followed_users.delete(User.find_by_nickname(user_to_follow))
-	#end
-	
+	def feed opts = {}
+		opts[:limit] = true if opts[:limit].nil?
+		opts[:user] = self if opts[:user].nil?
+		Micropost.feed user: opts[:user], limit: opts[:limit]
+	end
+
 	private
 
 		def encrypt_password

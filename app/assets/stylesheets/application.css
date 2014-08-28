@@ -13,6 +13,13 @@
  *= require_tree .
  *= require_self
  */
+body {
+	background: #FFFEF2;
+}
+body > .container {
+	background: #fff;
+	padding-top: 20px;
+}
 .navbar {
 	border-radius: 0 0 4px 4px !important;
 }
@@ -23,4 +30,7 @@
 }
 .navbar-brand:hover {
 	text-shadow: 0 0 5px #fff;
+}
+body > .navbar {
+	margin-bottom: 0;
 }

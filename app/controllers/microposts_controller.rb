@@ -1,5 +1,5 @@
 class MicropostsController < ApplicationController
-	before_action :must_be_logged_in
+	before_action :must_be_logged_in, only: [ :create, :destroy ]
 
 	def create
 		@micropost = Micropost.new(params_micropost)
@@ -18,6 +18,22 @@ class MicropostsController < ApplicationController
 
 		@micropost.destroy
 		redirect_to user_path(current_user.nickname)
+	end
+
+	def show_json
+		#sleep 2
+		@user = User.find_by(nickname: params[:user_nickname])
+
+		puts ">>> #{@user == current_user}"
+		
+		if @user
+			@microposts = signed_in? && @user == current_user ? @user.feed(limit: false) : @user.microposts
+			@microposts = @microposts[params[:cursor].to_i, 20]
+			render json: @microposts.to_json(include: {user: {only: [:nickname, :email]}})
+		else
+			render json: { error: "User is not found!" }
+		end
+
 	end
 
 	private

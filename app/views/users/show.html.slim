@@ -5,15 +5,27 @@
     .avatar-n-name
       h2
         = gravatar_for @user
-        .b-username
+        .b-username#user-nickname data-nickname=(@user.nickname)
           = @user.nickname
           br
           small
             = @user.fullname
-      - if current_user.follows? @user
-        = link_to 'Unfollow', ''
-      - else
-        = link_to 'Follow', follow_path(@user.nickname)
+      .row
+        .col-md-6
+          p
+            = @user.followed_users.count
+            br
+            |Follows
+        .col-md-6
+          p
+            = @user.followers.count
+            br
+            |Followers
+      - unless @user == current_user
+        - if current_user.follows? @user
+          = link_to 'Unfollow', unfollow_path(@user.nickname)
+        - else
+          = link_to 'Follow', follow_path(@user.nickname)
   .col-md-8
     - if signed_in? && @user == current_user
       = form_tag new_micropost_path, method: :post do
@@ -23,5 +35,5 @@
         .form-group.row
           .col-md-8
             = submit_tag 'Post', class: 'btn btn-primary'
-    ul.b-microposts
+    ul.b-microposts#microposts
       = render @microposts

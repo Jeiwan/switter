@@ -22,13 +22,10 @@ class UsersController < ApplicationController
 
 	def show
 		@user = User.find_by_nickname(params[:user_name])
+		@micropost = Micropost.new
 
 		if @user
-			if @user == current_user
-				@microposts = @user.feed(current_user).order('created_at DESC')
-			else
-				@microposts = @user.microposts.order('created_at DESC')
-			end
+			@microposts = @user == current_user ? @user.feed : @user.microposts.limit(20)
 			render "show"
 		else
 			flash[:danger] = "User is not found!"
@@ -51,6 +48,11 @@ class UsersController < ApplicationController
 
 	def follow
 		current_user.follow(User.find_by(nickname: params[:user_name]))
+		redirect_to user_path(params[:user_name])
+	end
+	
+	def unfollow
+		current_user.unfollow(User.find_by(nickname: params[:user_name]))
 		redirect_to user_path(params[:user_name])
 	end
 

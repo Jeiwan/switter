@@ -12,6 +12,9 @@ RSpec.describe User, :type => :model do
 	it { should respond_to :password }
 	it { should respond_to :password_confirmation }
 	it { should respond_to :microposts }
+	it { should respond_to :followed_users }
+	it { should respond_to :followers }
+	it { should respond_to :relationships }
 
 	describe "sign up without nickname" do
 		before { @user.nickname = nil }
