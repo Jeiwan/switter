@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-	before_action :must_be_signed_in, only: [:edit, :update]
+	before_action :must_be_signed_in, only: [:edit, :update, :follow]
 
 	def index
 		@users = User.all.paginate(page: params[:page],per_page: 20)
@@ -47,15 +47,17 @@ class UsersController < ApplicationController
 	end
 
 	def follow
-		current_user.follow(User.find_by(nickname: params[:user_name]))
-		redirect_to user_path(params[:user_name])
+		@user_to_follow = User.find(params[:user_id])
+		if current_user.follows? @user_to_follow
+			current_user.unfollow(@user_to_follow)
+			answer = "unfollowed"
+		else
+			current_user.follow(@user_to_follow)
+			answer = "followed"
+		end
+		render json: {answer: answer}
 	end
 	
-	def unfollow
-		current_user.unfollow(User.find_by(nickname: params[:user_name]))
-		redirect_to user_path(params[:user_name])
-	end
-
 	private
 		def params_user
 			params.require(:user).permit(:nickname, :fullname, :email, :password, :password_confirmation)

@@ -43,6 +43,7 @@ In progress.
 	3. Make hashtags
 	4. Follow/unfollow through ajax
 	5. Replace Gravatar with paperclip or carrierwave
+	6. Add real-time notifications on new posts from followed users
 
 ## Last subheader
 

@@ -22,10 +22,12 @@
             br
             |Followers
       - unless @user == current_user
-        - if current_user.follows? @user
-          = link_to 'Unfollow', unfollow_path(@user.nickname)
-        - else
-          = link_to 'Follow', follow_path(@user.nickname)
+        /- if current_user.follows? @user
+          /= link_to 'Unfollow', unfollow_path(@user.nickname)
+        /- else
+          /= link_to 'Follow', follow_path(@user.nickname)
+        = content_tag :a, current_user.follows?(@user) ? 'Unfollow' : 'Follow', href: '#', onclick: "followUser(#{@user.id}, this);return false;"
+        /= link_to current_user.follows?(@user) ? 'Unfollow' : 'Follow', follow_path, method: :post
   .col-md-8
     - if signed_in? && @user == current_user
       = form_tag new_micropost_path, method: :post do
