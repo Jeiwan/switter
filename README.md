@@ -41,7 +41,7 @@ In progress.
 	1. ~~Load feed with ajax (by 20 tweets)~~
 	2. Make retweet mechanism
 	3. Make hashtags
-	4. Follow/unfollow through ajax
+	4. ~~Follow/unfollow through ajax~~
 	5. Replace Gravatar with paperclip or carrierwave
 	6. Add real-time notifications on new posts from followed users
 
