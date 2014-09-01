@@ -14,5 +14,6 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require feed
+//= require symbolCounter
 //= require jquery.Jcrop.min
 //= require_tree .

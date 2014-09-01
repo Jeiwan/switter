@@ -46,7 +46,7 @@ In progress.
 		1. ~~Add edit avatar function on the settings page~~
 		2. ~~Add crop image function~~
 	6. Add real-time notifications on new posts from followed users
-	7. Add symbol counter to the new microposts form
+	7. ~~Add symbol counter to the new microposts form~~
 
 ## Last subheader
 

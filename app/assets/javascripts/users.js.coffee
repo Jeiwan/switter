@@ -3,6 +3,10 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $ ->
+	#$new_microposts = $('#micropost_content')
+	#if $new_microposts.length > 0
+	symbolCounter = new SymbolCounter()
+
 	$cropbox = $("#cropbox")
 	$cropbox.on 'load', ->
 		$cropbox.Jcrop({

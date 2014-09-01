@@ -3,7 +3,9 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $ ->
-	feed = new Feed("#microposts")
+	$microposts = $("#microposts")
+	if $microposts.length > 0
+		feed = new Feed("#microposts")
 
 #$ ->
 	#inUse = false
