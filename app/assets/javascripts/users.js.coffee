@@ -2,6 +2,25 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
+$ ->
+	$cropbox = $("#cropbox")
+	$cropbox.on 'load', ->
+		$cropbox.Jcrop({
+			aspectRatio: 1,
+			onSelect: updateCoords,
+			onChange: updateCoords,
+			setSelect: [0, 0, $cropbox.width(), $cropbox.height()]
+		})
+
+	updateCoords = (coords) ->
+		$('#crop_crop_x').val(coords.x)
+		$('#crop_crop_y').val(coords.y)
+		$('#crop_crop_w').val(coords.w)
+		$('#crop_crop_h').val(coords.h)
+		true
+	
+	true
+
 this.followUser = (userId, that) ->
 	$.ajax({
 		url: '/follow',

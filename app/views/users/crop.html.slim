@@ -1,0 +1,16 @@
+.row
+  .col-md-offset-2.col-md-8
+    .panel.panel-default
+      .panel-heading
+        h2 Crop Image
+      .panel-body
+        = image_tag @user.avatar.url, id: 'cropbox'
+
+        = form_for @user, url: settings_crop_path, method: :put do |f|
+          .form-group
+            - %w[x y w h].each do |a|
+              = hidden_field_tag "crop[crop_#{a}]"
+          .form-group.text-center
+            = f.submit "Crop", class: "btn btn-success"
+            |&nbsp;&nbsp;
+            = link_to "Cancel", settings_path, class: "btn btn-default"

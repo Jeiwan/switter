@@ -10,7 +10,10 @@ class User < ActiveRecord::Base
 	has_many :reverse_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
 	has_many :followers, through: :reverse_relationships
 
+	has_attached_file :avatar, styles: { original: "600x600>", cropped: { processors: [:cropper] } }, default_url: "/images/avatars/default.png", default_style: :cropped
+
 	#attr_accessor :password, :password_confirmation
+	attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
 
 	before_save :encrypt_password
 
@@ -19,6 +22,7 @@ class User < ActiveRecord::Base
 	validates :nickname, length: { in: 5..32 }
 	validates :fullname, length: { in: 5..64 }
 	validates :password, confirmation: true, length: { in: 8..128 }
+	validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
 
 	def follow user_to_follow
 		relationships.create(followed_id: user_to_follow.id)

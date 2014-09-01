@@ -40,10 +40,10 @@ Feed.prototype.fetchTweets = function() {
 		success: function(data) {
 			$.each(data, function(d) {
 				var li = $("<li class='b-micropost'></li>");
-				//var img = $("<img src='http://gravatar.com/avatar/#{md5}?size=50'>");
+				var img = $("<img src='" + data[d].user.avatar + "' width=50 height=50 class='avatar'>");
 				var span = $("<span>Posted by <a href='#'>" + data[d].user.nickname + "</a> " + data[d].created + " ago</span>");
 				var p = $("<p>" + data[d].content + "</p>");
-				that.$el.append(li.append(span).append(p));
+				that.$el.append(li.append(img).append(span).append(p));
 			});
 			that.toggleSpinner();
 			that.inUse = false;

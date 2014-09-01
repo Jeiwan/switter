@@ -1,5 +1,5 @@
 li.b-micropost
-  = gravatar_for micropost.user, 50
+  = image_tag micropost.user.avatar.url, class: 'avatar', size: "50"
   span
     |Posted by 
     = link_to micropost.user.nickname, user_path(micropost.user.nickname)

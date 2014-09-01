@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 	resources :users, only: [:index, :create]
 	get '/signup' => 'users#new', as: 'signup'
 	get '/settings' => 'users#edit', as: 'settings'
+	put '/settings/crop' => 'users#crop', as: 'settings_crop'
 	put '/settings' => 'users#update'
 	get '/:user_name' => 'users#show', as: 'user'
 	post '/follow/' => 'users#follow', as: 'follow'

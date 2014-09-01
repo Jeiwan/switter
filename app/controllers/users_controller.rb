@@ -37,10 +37,27 @@ class UsersController < ApplicationController
 		@user = current_user
 	end
 
+	def crop
+		if params[:crop]
+			current_user.crop_x = params[:crop][:crop_x]
+			current_user.crop_y = params[:crop][:crop_y]
+			current_user.crop_w = params[:crop][:crop_w]
+			current_user.crop_h = params[:crop][:crop_h]
+		end
+		current_user.avatar.reprocess!
+		flash[:success] = "Information updated!"
+		redirect_to user_path(current_user.nickname)
+	end
+
 	def update
+		@user = current_user
 		if current_user.update(params_user)
-			flash[:success] = "Information updated!"
-			redirect_to user_path(current_user.nickname)
+			if params[:user][:avatar].present?
+				render :crop
+			else
+				flash[:success] = "Information updated!"
+				redirect_to user_path(current_user.nickname)
+			end
 		else
 			render "edit"
 		end
@@ -60,7 +77,7 @@ class UsersController < ApplicationController
 	
 	private
 		def params_user
-			params.require(:user).permit(:nickname, :fullname, :email, :password, :password_confirmation)
+			params.require(:user).permit(:nickname, :fullname, :email, :password, :password_confirmation, :avatar)
 		end
 
 		def must_be_signed_in

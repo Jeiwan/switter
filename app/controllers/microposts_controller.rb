@@ -23,11 +23,9 @@ class MicropostsController < ApplicationController
 	end
 
 	def show_json
-		#sleep 2
+		sleep 2
 		@user = User.find_by(nickname: params[:user_nickname])
 
-		puts ">>> #{@user == current_user}"
-		
 		if @user
 			@microposts = signed_in? && @user == current_user ? @user.feed(limit: false) : @user.microposts
 			@microposts = @microposts[params[:cursor].to_i, 20].to_a.map do |m|
@@ -37,6 +35,7 @@ class MicropostsController < ApplicationController
 				user = User.find(m.user.id)
 				mm[:user][:nickname] = user.nickname
 				mm[:user][:email] = user.email
+				mm[:user][:avatar] = user.avatar.url
 				mm
 			end
 			render json: @microposts

@@ -11,6 +11,7 @@
  * file per style scope.
  *
  *= require_tree .
+ *= require jquery.Jcrop.min
  *= require_self
  */
 body {
